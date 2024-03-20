@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "6c4ba343-7ad0-4bd6-a3b4-412a936c4af8",
+		"name": "Inditex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10911300",
+		"_collection_link": "https://red-comet-165999.postman.co/workspace/Kenny~a67f0f5a-41ce-4b62-aecc-d6e54f14a5a3/collection/10911300-6c4ba343-7ad0-4bd6-a3b4-412a936c4af8?action=share&source=collection_link&creator=10911300"
+	},
+	"item": [
+		{
+			"name": "GetPrice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"/* Response must to Have the following structure:\r",
+							"{\r",
+							"   \"productId\": 35455,\r",
+							"    \"brandId\": 1,\r",
+							"    \"priceList\": 3,\r",
+							"    \"startDate\": \"2020-06-15T00:00:00\",\r",
+							"    \"endDate\": \"2020-06-15T11:00:00\",\r",
+							"    \"price\": 30.5\r",
+							"},\r",
+							"*/\r",
+							"pm.test(\"Prices Data Is Correct\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.productId).to.eql(35455);\r",
+							"  pm.expect(responseJson.brandId).to.eql(1);\r",
+							"  pm.expect(responseJson.priceList).to.eql(3);\r",
+							"  pm.expect(responseJson.startDate).to.eql(\"2020-06-15T00:00:00\");\r",
+							"  pm.expect(responseJson.endDate).to.eql(\"2020-06-15T11:00:00\");\r",
+							"  pm.expect(responseJson.price).to.eql(30.5);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/price?date={{date}}&productId={{productId}}&brandId={{brandId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"description": "The Aplication Date"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}",
+							"description": "The Product Id"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}",
+							"description": "The Brand Id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPrice Empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"/* Response must to be Empty:\r",
+							"{},\r",
+							"*/\r",
+							"pm.test(\"Price Data Is Empty\", () => {\r",
+							"  pm.response.to.not.be.withBody;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/price?date={{date}}&productId={{productId}}&brandId=2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{date}}",
+							"description": "The Aplication Date"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}",
+							"description": "The Product Id"
+						},
+						{
+							"key": "brandId",
+							"value": "2",
+							"description": "The Brand Id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPrice Error 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/price?date={{date}}0&productId={{productId}}&brandId={{brandId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"price"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{date}}0",
+							"description": "The Aplication Date"
+						},
+						{
+							"key": "productId",
+							"value": "{{productId}}",
+							"description": "The Product Id"
+						},
+						{
+							"key": "brandId",
+							"value": "{{brandId}}",
+							"description": "The Brand Id"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
