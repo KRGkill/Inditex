@@ -2,7 +2,7 @@ package com.gft.inditex.infrastructure.inbound.controller;
 
 import com.gft.inditex.domain.entity.Prices;
 import com.gft.inditex.domain.exceptions.NotFoundException;
-import com.gft.inditex.domain.services.PriceService;
+import com.gft.inditex.application.services.PriceService;
 import com.gft.inditex.infrastructure.model.GetPriceResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
