@@ -1,5 +1,6 @@
 package com.gft.inditex.domain.services;
 
+import com.gft.inditex.application.services.PriceService;
 import com.gft.inditex.domain.entity.Prices;
 import org.junit.Test;
 import org.junit.runner.RunWith;
